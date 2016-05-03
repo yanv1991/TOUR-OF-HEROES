@@ -1,5 +1,5 @@
 import {Injectable}     from '@angular/core';
-import {Http, Response} from '@angular/http';
+import {Http, Response, Headers, RequestOptions} from '@angular/http';
 import {Observable}     from 'rxjs/Observable';
 import {Hero}           from './hero';
 @Injectable()
@@ -11,6 +11,13 @@ export class HeroService {
 		return this.http.get(this._heroesUrl)
 			.map(this.extractData)
 			.catch(this.handleError);
+
+		/* Promise version
+		return this.http.get(this._heroesUrl)
+			.toPromise()
+			.then(this.extractData)
+			.catch(this.handleError);
+		*/
 	}
 
 	//TODO: temporaly getHero, this should retrieve it from the api
@@ -28,8 +35,14 @@ export class HeroService {
         });
 	}
 
-	addHero(newHero: Hero){
+	addHero(newHero: Hero): Observable<Hero> {
+		let body = JSON.stringify(newHero);
+		let headers = new Headers({ 'Content-Type': 'application/json' });
+		let options = new RequestOptions({ headers: headers });
 
+		return this.http.post(this._heroesUrl, body, options)
+			.map(this.extractData)
+			.catch(this.handleError);
 	}
 
 	private extractData(res: Response) {

@@ -31,6 +31,12 @@ export class HeroesComponent implements OnInit {
 							.subscribe(
 							heroes => this.heroes = heroes,
 							error => this.errorMessage = <any>error);
+		/*Promise version
+		this._heroService.getHeroes()
+				     .then(
+                     heroes => this.heroes = heroes,
+                     error =>  this.errorMessage = <any>error);
+		*/
 	}
 
 	ngOnInit() {
@@ -59,7 +65,10 @@ export class HeroesComponent implements OnInit {
 		if (!this.hero) {
 			return;
 		}
-		this._heroService.addHero(this.hero);
+		this._heroService.addHero(this.hero)
+			.subscribe(
+			hero => this.heroes.push(hero),
+			error => this.errorMessage = <any>error);
 	}
 
 	// TODO: Remove this when we're done

@@ -6,6 +6,7 @@ import { HeroService }     from './hero.service';
 import { HeroesComponent } from './heroes.component';
 import { HeroDetailComponent } from './hero-detail.component';
 import { DashboardComponent } from './dashboard.component';
+import { WikiComponent } from './wiki.component';
 @Component({
   selector: 'my-app',
   template: `
@@ -13,6 +14,7 @@ import { DashboardComponent } from './dashboard.component';
     <nav>
       <a [routerLink]="['Dashboard']">Dashboard</a>
       <a [routerLink]="['Heroes']">Heroes</a>
+      <a [routerLink]="['Wiki']">Wiki</a>
     </nav>
     <router-outlet></router-outlet>
   `,
@@ -42,6 +44,11 @@ import { DashboardComponent } from './dashboard.component';
     name: 'HeroDetail',
     component: HeroDetailComponent
   },
+  {
+    path: '/wiki',
+    name: 'Wiki',
+    component: WikiComponent
+  }
 
 ])
 export class AppComponent {
