@@ -18,7 +18,7 @@ export class HeroService {
             this.http.get(this._heroesUrl)
                 .map(response => {
                     var heroes: Hero[] = response.json().data;
-                    return <Hero> heroes.filter(hero => hero.id === id)[0];
+                    return heroes.filter(hero => hero.id === id)[0];
                 })
                 .subscribe(res => {
                     observable.next(res);
