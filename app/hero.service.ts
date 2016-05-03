@@ -14,14 +14,11 @@ export class HeroService {
 	}
 
 	getHero(id: number) {
-		/*return this.http.get(this._heroesUrl)
-			.map(this.extractData)
-			.catch(this.handleError);*/
 		return new Observable(observable => {
             this.http.get(this._heroesUrl)
                 .map(response => {
                     var heroes: Hero[] = response.json().data;
-                    return heroes.filter(hero => hero.id === id)[0];
+                    return <Hero> heroes.filter(hero => hero.id === id)[0];
                 })
                 .subscribe(res => {
                     observable.next(res);
