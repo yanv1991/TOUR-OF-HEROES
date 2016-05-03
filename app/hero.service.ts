@@ -17,19 +17,20 @@ export class HeroService {
 		return new Observable(observable => {
             this.http.get(this._heroesUrl)
                 .map(response => {
-                    var heroes: Hero[] = response.json().data;
-                    return heroes.filter(hero => hero.id === id)[0];
+					var heroes: Hero[] = <any> this.extractData(response);
+					return heroes.filter(hero => hero.id === id)[0];
                 })
+                .catch(this.handleError)
                 .subscribe(res => {
                     observable.next(res);
-                })
-
+                });
         });
 	}
 
 	addHero(newHero: Hero){
 
 	}
+
 	private extractData(res: Response) {
 		if (res.status < 200 || res.status >= 300) {
 			throw new Error('Bad response status: ' + res.status);

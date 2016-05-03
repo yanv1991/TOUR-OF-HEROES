@@ -11,7 +11,7 @@ import {Hero} from './hero';
 })
 export class HeroDetailComponent implements OnInit {
 	hero: Hero;
-
+	errorMessage: string;
 	constructor(
 		private _heroService: HeroService,
 		private _routeParams: RouteParams) {
@@ -20,7 +20,8 @@ export class HeroDetailComponent implements OnInit {
 	ngOnInit() {
 		let id = +this._routeParams.get('id');
 		this._heroService.getHero(id).subscribe(
-			data => this.hero = <any> data);
+			data => this.hero = <any> data,
+			error => this.errorMessage = <any>error);
 	}
 
 	goBack() {
