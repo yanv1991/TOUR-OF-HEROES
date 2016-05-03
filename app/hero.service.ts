@@ -13,6 +13,7 @@ export class HeroService {
 			.catch(this.handleError);
 	}
 
+	//TODO: temporaly getHero, this should retrieve it from the api
 	getHero(id: number) {
 		return new Observable(observable => {
             this.http.get(this._heroesUrl)

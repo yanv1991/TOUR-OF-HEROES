@@ -17,6 +17,12 @@ export class HeroesComponent implements OnInit {
 	heroes: Hero[];
 	errorMessage: string;
 
+	isHeroFormVisible: boolean;
+	powers = ['Really Smart', 'Super Flexible',
+		'Super Hot', 'Weather Changer'];
+	submitted = false;
+	hero = new Hero("", "Really Smart");
+
 	constructor(private _router: Router, private _heroService: HeroService) {
 	}
 
@@ -28,6 +34,7 @@ export class HeroesComponent implements OnInit {
 	}
 
 	ngOnInit() {
+		this.isHeroFormVisible = false;
 		this.getHeroes();
 	}
 
@@ -38,6 +45,25 @@ export class HeroesComponent implements OnInit {
 	gotoDetail() {
 		this._router.navigate(['HeroDetail', { id: this.selectedHero.id }]);
 	}
+
+	showHeroForm() {
+		this.isHeroFormVisible = true;
+	}
+
+	hideHeroForm() {
+		this.isHeroFormVisible = false;
+	}
+
+	/* Hero form */
+	addHero() {
+		if (!this.hero) {
+			return;
+		}
+		this._heroService.addHero(this.hero);
+	}
+
+	// TODO: Remove this when we're done
+	get diagnostic() { return JSON.stringify(this.hero); }
 
 }
  

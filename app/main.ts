@@ -1,5 +1,5 @@
 import {bootstrap}    from '@angular/platform-browser-dynamic';
-// Add all operators to Observable
-import 'rxjs/Rx';
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/catch';
 import {AppComponent} from './app.component';
 bootstrap(AppComponent);
