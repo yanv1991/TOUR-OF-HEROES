@@ -1,4 +1,4 @@
-import { Component, OnInit } from 'angular2/core';
+import { Component, OnInit } from '@angular/core';
 import {HeroService} from './hero.service';
 import {Hero} from './hero';
 @Component({
@@ -13,9 +13,10 @@ export class AddHeroComponent {
 
 	constructor(private _heroService: HeroService) {}
 	addHero() {
-		if (this.hero) {
-			this._heroService.addHero(this.hero);
+		if (!this.hero) {
+			return;
 		}
+		this._heroService.addHero(this.hero);
 	}
 
 	// TODO: Remove this when we're done

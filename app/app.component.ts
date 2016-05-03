@@ -1,5 +1,7 @@
-import { Component }       from 'angular2/core';
-import { RouteConfig, ROUTER_DIRECTIVES, ROUTER_PROVIDERS } from 'angular2/router';
+import { Component }       from '@angular/core';
+import { RouteConfig, ROUTER_DIRECTIVES, ROUTER_PROVIDERS } from '@angular/router-deprecated';
+import { HTTP_PROVIDERS }    from '@angular/http';
+
 import { HeroService }     from './hero.service';
 import { HeroesComponent } from './heroes.component';
 import { HeroDetailComponent } from './hero-detail.component';
@@ -20,6 +22,7 @@ import { AddHeroComponent } from './add-hero.component';
   directives: [ROUTER_DIRECTIVES],
   providers: [
     ROUTER_PROVIDERS,
+    HTTP_PROVIDERS,
     HeroService
   ]
 })

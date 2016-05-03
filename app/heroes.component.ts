@@ -1,5 +1,5 @@
-import {Component, OnInit} from 'angular2/core';
-import { Router } from 'angular2/router';
+import {Component, OnInit} from '@angular/core';
+import { Router } from '@angular/router-deprecated';
 
 import {Hero} from './hero';
 import {HeroService} from './hero.service';
@@ -15,12 +15,16 @@ import {HeroDetailComponent} from './hero-detail.component';
 export class HeroesComponent implements OnInit {
 	selectedHero: Hero;
 	heroes: Hero[];
+	errorMessage: string;
 
 	constructor(private _router: Router, private _heroService: HeroService) {
 	}
 
 	getHeroes() {
-		this._heroService.getHeroes().then(heroes => this.heroes = heroes);
+		this._heroService.getHeroes()
+							.subscribe(
+							heroes => this.heroes = heroes,
+							error => this.errorMessage = <any>error);
 	}
 
 	ngOnInit() {
