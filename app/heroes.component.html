@@ -13,7 +13,7 @@
 	<button (click)="gotoDetail()">View Details</button>
 </div>
 
-<div *ngIf="isHeroFormVisible">
+<div ng-show="isHeroFormVisible">
 	<h2>Add new Heroes</h2>
 	{{diagnostic}}
 	<div class="container">
